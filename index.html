@@ -522,7 +522,7 @@ footer{background:var(--ink);color:#a3a3a8;border-top:1px solid var(--line-d);pa
     d.innerHTML = `<span class="n">${String(i + 1).padStart(2, '0')}</span>
       <div><h3>${svg(ic)}${t}</h3><div class="prev">${items.slice(0, 3).join(' · ')}${items.length > 3 ? ' и ещё ' + (items.length - 3) : ''}</div>
       <div class="items"><div><ul>${items.map(x => `<li>${x}</li>`).join('')}</ul></div></div></div>
-      <span class="tag">${items.length} ${plural(items.length)}<b>+</b></span>`;
+      <span class="tag"><b>+</b></span>`;
     d.addEventListener('click', () => d.classList.toggle('open'));
     rows.appendChild(d);
   });
