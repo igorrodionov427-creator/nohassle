@@ -445,6 +445,24 @@ footer{background:var(--ink);color:#a3a3a8;border-top:1px solid var(--line-d);pa
 .opt .go{margin-left:auto;flex:none;font-size:18px;opacity:.6}
 .choose-ft{margin-top:16px;font:500 11px/1.4 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--eyebrow);text-align:center}
 .cta-pair{display:flex;gap:12px;flex-wrap:wrap}
+/* компьютер: маленькое окошко «вылезает» из нажатой кнопки */
+.choose.pop{display:block;padding:0;background:rgba(11,11,12,.06);backdrop-filter:none;-webkit-backdrop-filter:none;transition:opacity .25s,visibility .25s}
+.choose.pop .choose-box{position:fixed;width:384px;max-width:none;padding:14px;border-radius:22px;border:1px solid rgba(11,11,12,.08);box-shadow:0 30px 70px -24px rgba(0,0,0,.4),0 2px 8px rgba(0,0,0,.06);
+  opacity:0;transform:translateY(var(--dy,-8px)) scale(.6);filter:blur(4px);transition:transform .55s cubic-bezier(.34,1.45,.64,1),opacity .22s,filter .3s}
+.choose.pop.open .choose-box{opacity:1;transform:none;filter:none}
+.choose.pop .choose-hd{margin-bottom:10px;align-items:center;padding:2px 2px 0 6px}
+.choose.pop .choose-hd h3{font-size:17px}
+.choose.pop .choose-hd p{display:none}
+.choose.pop .choose-x{width:30px;height:30px}
+.choose.pop .choose-opts{gap:6px}
+.choose.pop .opt{padding:10px 12px;gap:12px;border-radius:15px;opacity:0;transform:translateY(8px);transition:opacity .3s,transform .45s cubic-bezier(.16,1,.3,1),box-shadow .3s,border-color .3s}
+.choose.pop.open .opt{opacity:1;transform:none}
+.choose.pop.open .opt:nth-child(1){transition-delay:.08s}.choose.pop.open .opt:nth-child(2){transition-delay:.14s}
+.choose.pop.open .opt:hover{transform:translateY(-2px)}
+.choose.pop .opt-ic,.choose.pop .opt-ic svg{width:36px;height:36px}
+.choose.pop .opt b{font-size:14.5px}
+.choose.pop .opt span{font-size:12.5px;margin-top:1px}
+.choose.pop .choose-ft{display:none}
 @media (max-width:560px){
   .choose{align-items:end;padding:8px}
   .choose-box{padding:16px 14px calc(12px + env(safe-area-inset-bottom));border-radius:22px}
@@ -889,10 +907,27 @@ footer{background:var(--ink);color:#a3a3a8;border-top:1px solid var(--line-d);pa
 <script>
 (() => {
   const box = document.getElementById('choose');
-  const open = () => { box.classList.add('open'); document.body.style.overflow = 'hidden'; };
+  const card = box.querySelector('.choose-box');
+  const open = btn => {
+    // на компьютере окошко появляется рядом с нажатой кнопкой (под ней или над ней)
+    const pop = innerWidth > 760 && btn;
+    box.classList.toggle('pop', !!pop);
+    if (pop) {
+      const r = btn.getBoundingClientRect(), w = 384, h = card.offsetHeight;
+      const left = Math.min(Math.max(12, r.left), innerWidth - w - 12);
+      const below = r.bottom + 10 + h < innerHeight - 12;
+      const top = below ? r.bottom + 10 : Math.max(12, r.top - 10 - h);
+      card.style.left = left + 'px'; card.style.top = top + 'px';
+      card.style.transformOrigin = `${r.left + r.width / 2 - left}px ${below ? 0 : h}px`;
+      card.style.setProperty('--dy', below ? '-8px' : '8px');
+    } else { card.style.left = card.style.top = card.style.transformOrigin = ''; }
+    box.classList.add('open'); if (!pop) document.body.style.overflow = 'hidden';
+  };
   const close = () => { box.classList.remove('open'); document.body.style.overflow = ''; };
+  addEventListener('resize', () => { if (box.classList.contains('pop')) close(); });
+  addEventListener('scroll', () => { if (box.classList.contains('pop') && box.classList.contains('open')) close(); }, { passive: true });
   // все кнопки «Обсудить задачу / Написать нам» открывают выбор; ссылки с data-direct ведут сразу
-  document.querySelectorAll('a[href="https://t.me/nohassle_ru"]:not([data-direct])').forEach(a => a.addEventListener('click', e => { e.preventDefault(); open(); }));
+  document.querySelectorAll('a[href="https://t.me/nohassle_ru"]:not([data-direct])').forEach(a => a.addEventListener('click', e => { e.preventDefault(); open(a); }));
   box.addEventListener('click', e => { if (e.target === box || e.target.closest('.choose-x')) close(); });
   box.querySelectorAll('.opt').forEach(a => a.addEventListener('click', () => setTimeout(close, 300)));
   document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
