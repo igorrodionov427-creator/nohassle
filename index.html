@@ -404,13 +404,16 @@ footer{background:var(--ink);color:#a3a3a8;border-top:1px solid var(--line-d);pa
   footer{padding-bottom:110px}
   /* касания */
   .btn:active,.pcard:active,.step:active,.qa button:active{transform:scale(.97);transition-duration:.15s}
-  /* меню на весь экран */
-  .menu{inset:0;padding:120px 24px 40px;align-content:start;background:rgba(255,255,255,.97);backdrop-filter:blur(10px);transform:none;clip-path:circle(0 at 30px 70px);transition:clip-path .7s cubic-bezier(.77,0,.18,1),opacity .2s}
-  .menu.open{clip-path:circle(150% at 30px 70px)}
-  .menu a{font-size:36px;padding:18px 0;opacity:0;transform:translateY(24px);transition:opacity .5s,transform .6s cubic-bezier(.16,1,.3,1)}
-  .menu.open a{opacity:1;transform:none}
-  .menu.open a:nth-child(1){transition-delay:.15s}.menu.open a:nth-child(2){transition-delay:.21s}.menu.open a:nth-child(3){transition-delay:.27s}.menu.open a:nth-child(4){transition-delay:.33s}.menu.open a:nth-child(5){transition-delay:.39s}
-  .menu .btn{font-size:16px;height:58px}
+  /* компактное меню-карточка под шапкой */
+  .menu{inset:var(--mtop,80px) 12px auto 12px;padding:6px 6px 8px;gap:0;border:1px solid var(--line);border-radius:22px;background:rgba(255,255,255,.98);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 30px 60px -24px rgba(0,0,0,.35);transform:translateY(-8px) scale(.98);transform-origin:top left;transition:opacity .25s,transform .35s cubic-bezier(.16,1,.3,1)}
+  .menu.open{transform:none}
+  .menu a.ml{display:flex;justify-content:space-between;align-items:center;font:600 17px/1 var(--head);letter-spacing:-.02em;padding:15px 14px;border-bottom:1px solid var(--line)}
+  .menu a.ml::after{content:"→";font-weight:400;color:var(--eyebrow)}
+  .menu a.ml:active{background:var(--mist);border-radius:14px}
+  .m-cta{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:8px}
+  .m-cta a{height:48px;border-radius:999px;display:flex;align-items:center;justify-content:center;gap:8px;font:600 14px/1 var(--body);border:1px solid var(--line);padding:0 10px}
+  .m-cta a.dark{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .m-cta svg{flex:none}
   header.top{z-index:51}
   #burger svg path{transition:d .4s}
   /* закреплённая кнопка внизу */
@@ -442,7 +445,20 @@ footer{background:var(--ink);color:#a3a3a8;border-top:1px solid var(--line-d);pa
 .opt .go{margin-left:auto;flex:none;font-size:18px;opacity:.6}
 .choose-ft{margin-top:16px;font:500 11px/1.4 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--eyebrow);text-align:center}
 .cta-pair{display:flex;gap:12px;flex-wrap:wrap}
-@media (max-width:560px){.choose{align-items:end;padding:10px}.choose-box{padding:24px 18px calc(18px + env(safe-area-inset-bottom));border-radius:24px}}
+@media (max-width:560px){
+  .choose{align-items:end;padding:8px}
+  .choose-box{padding:16px 14px calc(12px + env(safe-area-inset-bottom));border-radius:22px}
+  .choose-hd{margin-bottom:12px;align-items:center}
+  .choose-hd h3{font-size:19px}
+  .choose-hd p{font-size:13px;margin-top:3px}
+  .choose-x{width:34px;height:34px}
+  .choose-opts{gap:8px}
+  .opt{padding:11px 12px;gap:12px;border-radius:16px}
+  .opt-ic,.opt-ic svg{width:38px;height:38px}
+  .opt b{font-size:15px}
+  .opt span{font-size:12.5px;margin-top:1px}
+  .choose-ft{display:none}
+}
 
 </style>
 </head>
@@ -460,12 +476,17 @@ footer{background:var(--ink);color:#a3a3a8;border-top:1px solid var(--line-d);pa
     <button class="icon-btn burger" id="burger" aria-label="Меню" style="all:unset;cursor:pointer;width:44px;height:44px;display:none;place-items:center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 8h16M4 16h16"/></svg></button>
     <a class="logo" href="#"><i>NH</i><em>No<span>Hassle</span></em></a>
     <div class="hd-r">
-      <a class="icon-btn" href="https://t.me/nohassle_ru" target="_blank" rel="noopener" aria-label="Telegram"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13"/><path d="m22 2-7 20-4-9-9-4Z"/></svg></a>
+      <a class="icon-btn" href="https://t.me/nohassle_ru" target="_blank" rel="noopener" aria-label="Telegram"><svg width="30" height="30"><use href="#lg-tg"/></svg></a>
       <a class="btn" href="https://t.me/nohassle_ru" target="_blank" rel="noopener">Написать нам</a>
     </div>
   </div>
 </header>
-<nav class="menu" id="menu"><a href="#services">Услуги</a><a href="#how">Как работаем</a><a href="#projects">Проекты</a><a href="#faq">Вопросы</a><a class="btn" href="https://t.me/nohassle_ru" target="_blank" rel="noopener">Написать в Telegram</a></nav>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="lg-tg" viewBox="0 0 240 240"><circle cx="120" cy="120" r="120" fill="#2AABEE"/><path d="M54.3 118.8c35-15.2 58.3-25.3 70-30.2 33.3-13.9 40.3-16.3 44.8-16.4 1 0 3.2.2 4.7 1.4 1.2 1 1.5 2.3 1.7 3.3s.4 3.1.2 4.7c-1.8 19-9.6 65.1-13.6 86.3-1.7 9-5 12-8.2 12.3-7 .6-12.3-4.6-19-9-10.6-6.9-16.5-11.2-26.8-18-11.9-7.8-4.2-12.1 2.6-19.1 1.8-1.8 32.5-29.8 33.1-32.3.1-.3.1-1.5-.6-2.1-.7-.6-1.7-.4-2.5-.2-1.1.2-17.9 11.4-50.6 33.5-4.8 3.3-9.1 4.9-13 4.8-4.3-.1-12.5-2.4-18.7-4.4-7.5-2.4-13.5-3.7-13-7.9.3-2.2 3.3-4.4 8.9-6.7z" fill="#fff"/></symbol>
+  <symbol id="lg-bot" viewBox="0 0 240 240"><circle cx="120" cy="120" r="120" fill="#2AABEE"/><g fill="none" stroke="#fff" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"><rect x="62" y="88" width="116" height="84" rx="26"/><path d="M120 60v28M44 122v26M196 122v26"/></g><circle cx="120" cy="54" r="11" fill="#fff"/><circle cx="96" cy="128" r="12" fill="#fff"/><circle cx="144" cy="128" r="12" fill="#fff"/><path d="M100 152h40" stroke="#fff" stroke-width="11" stroke-linecap="round"/></symbol>
+</svg>
+<nav class="menu" id="menu"><a class="ml" href="#services">Услуги</a><a class="ml" href="#how">Как работаем</a><a class="ml" href="#projects">Проекты</a><a class="ml" href="#faq">Вопросы</a>
+  <div class="m-cta"><a class="dark" href="https://t.me/NoHassleRuBot?start=lead" target="_blank" rel="noopener"><svg width="24" height="24"><use href="#lg-bot"/></svg>Заявка в боте</a><a href="https://t.me/nohassle_ru" data-direct target="_blank" rel="noopener"><svg width="24" height="24"><use href="#lg-tg"/></svg>В личку</a></div></nav>
 
 <section class="hero">
   <div class="wrap">
@@ -751,7 +772,10 @@ footer{background:var(--ink);color:#a3a3a8;border-top:1px solid var(--line-d);pa
 
   // мобильное меню
   const menu = $('#menu');
-  $('#burger').addEventListener('click', () => menu.classList.toggle('open'));
+  $('#burger').addEventListener('click', () => {
+    menu.style.setProperty('--mtop', Math.max(8, $('#top').getBoundingClientRect().bottom + 8) + 'px');
+    menu.classList.toggle('open');
+  });
   $$('#menu a').forEach(a => a.addEventListener('click', () => menu.classList.remove('open')));
   if (innerWidth <= 760) $('#burger').style.display = 'grid';
   addEventListener('resize', () => { $('#burger').style.display = innerWidth <= 760 ? 'grid' : 'none'; });
@@ -856,8 +880,8 @@ footer{background:var(--ink);color:#a3a3a8;border-top:1px solid var(--line-d);pa
       <button class="choose-x" type="button" aria-label="Закрыть"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
     </div>
     <div class="choose-opts">
-      <a class="opt main" href="https://t.me/NoHassleRuBot?start=lead" target="_blank" rel="noopener"><i class="opt-ic"><svg width="48" height="48" viewBox="0 0 240 240" aria-hidden="true"><defs><linearGradient id="gBotL" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2AABEE"/><stop offset="1" stop-color="#229ED9"/></linearGradient></defs><circle cx="120" cy="120" r="120" fill="url(#gBotL)"/><g fill="none" stroke="#fff" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"><rect x="62" y="88" width="116" height="84" rx="26"/><path d="M120 60v28M44 122v26M196 122v26"/></g><circle cx="120" cy="54" r="11" fill="#fff"/><circle cx="96" cy="128" r="12" fill="#fff"/><circle cx="144" cy="128" r="12" fill="#fff"/><path d="M100 152h40" stroke="#fff" stroke-width="11" stroke-linecap="round"/></svg></i><div><b>Оставить заявку в боте</b><span>Минута на 6 коротких вопросов — работает круглосуточно</span></div><em class="go">→</em></a>
-      <a class="opt" href="https://t.me/nohassle_ru" target="_blank" rel="noopener"><i class="opt-ic"><svg width="48" height="48" viewBox="0 0 240 240" aria-hidden="true"><defs><linearGradient id="gTgL" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2AABEE"/><stop offset="1" stop-color="#229ED9"/></linearGradient></defs><circle cx="120" cy="120" r="120" fill="url(#gTgL)"/><path d="M54.3 118.8c35-15.2 58.3-25.3 70-30.2 33.3-13.9 40.3-16.3 44.8-16.4 1 0 3.2.2 4.7 1.4 1.2 1 1.5 2.3 1.7 3.3s.4 3.1.2 4.7c-1.8 19-9.6 65.1-13.6 86.3-1.7 9-5 12-8.2 12.3-7 .6-12.3-4.6-19-9-10.6-6.9-16.5-11.2-26.8-18-11.9-7.8-4.2-12.1 2.6-19.1 1.8-1.8 32.5-29.8 33.1-32.3.1-.3.1-1.5-.6-2.1-.7-.6-1.7-.4-2.5-.2-1.1.2-17.9 11.4-50.6 33.5-4.8 3.3-9.1 4.9-13 4.8-4.3-.1-12.5-2.4-18.7-4.4-7.5-2.4-13.5-3.7-13-7.9.3-2.2 3.3-4.4 8.9-6.7z" fill="#fff"/></svg></i><div><b>Написать в личку</b><span>Расскажете задачу своими словами — ответит живой человек</span></div><em class="go">→</em></a>
+      <a class="opt main" href="https://t.me/NoHassleRuBot?start=lead" target="_blank" rel="noopener"><i class="opt-ic"><svg width="48" height="48" viewBox="0 0 240 240" aria-hidden="true"><defs><linearGradient id="gBotL" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2AABEE"/><stop offset="1" stop-color="#229ED9"/></linearGradient></defs><circle cx="120" cy="120" r="120" fill="url(#gBotL)"/><g fill="none" stroke="#fff" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"><rect x="62" y="88" width="116" height="84" rx="26"/><path d="M120 60v28M44 122v26M196 122v26"/></g><circle cx="120" cy="54" r="11" fill="#fff"/><circle cx="96" cy="128" r="12" fill="#fff"/><circle cx="144" cy="128" r="12" fill="#fff"/><path d="M100 152h40" stroke="#fff" stroke-width="11" stroke-linecap="round"/></svg></i><div><b>Оставить заявку в боте</b><span>6 коротких вопросов за минуту, 24/7</span></div><em class="go">→</em></a>
+      <a class="opt" href="https://t.me/nohassle_ru" target="_blank" rel="noopener"><i class="opt-ic"><svg width="48" height="48" viewBox="0 0 240 240" aria-hidden="true"><defs><linearGradient id="gTgL" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2AABEE"/><stop offset="1" stop-color="#229ED9"/></linearGradient></defs><circle cx="120" cy="120" r="120" fill="url(#gTgL)"/><path d="M54.3 118.8c35-15.2 58.3-25.3 70-30.2 33.3-13.9 40.3-16.3 44.8-16.4 1 0 3.2.2 4.7 1.4 1.2 1 1.5 2.3 1.7 3.3s.4 3.1.2 4.7c-1.8 19-9.6 65.1-13.6 86.3-1.7 9-5 12-8.2 12.3-7 .6-12.3-4.6-19-9-10.6-6.9-16.5-11.2-26.8-18-11.9-7.8-4.2-12.1 2.6-19.1 1.8-1.8 32.5-29.8 33.1-32.3.1-.3.1-1.5-.6-2.1-.7-.6-1.7-.4-2.5-.2-1.1.2-17.9 11.4-50.6 33.5-4.8 3.3-9.1 4.9-13 4.8-4.3-.1-12.5-2.4-18.7-4.4-7.5-2.4-13.5-3.7-13-7.9.3-2.2 3.3-4.4 8.9-6.7z" fill="#fff"/></svg></i><div><b>Написать в личку</b><span>Ответит живой человек</span></div><em class="go">→</em></a>
     </div>
     <div class="choose-ft">@NoHassleRuBot · @nohassle_ru</div>
   </div>
