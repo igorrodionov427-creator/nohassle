@@ -279,6 +279,8 @@ section{position:relative}
 .final .cta-pair{justify-content:center;position:relative}
 .final .cta-pair .btn{min-width:270px;justify-content:center;font-weight:600}
 @media (max-width:560px){.final .cta-pair{flex-direction:column;align-items:stretch;max-width:360px;margin:0 auto}.final .cta-pair .btn{min-width:0;width:100%}}
+/* название проекта выводится через CSS: на экране видно, а поисковики не связывают nohassle.ru с запросом «egolab.shop» */
+.nm{font-style:normal}.nm::after{content:attr(data-n)}
 .final .who{margin-top:22px;font:500 11px/1 var(--mono);letter-spacing:.14em;color:#8b8b91;text-transform:uppercase}
 
 footer{background:var(--ink);color:#a3a3a8;border-top:1px solid var(--line-d);padding:64px 0 34px;font-size:14px}
@@ -639,8 +641,8 @@ footer{background:var(--ink);color:#a3a3a8;border-top:1px solid var(--line-d);pa
         <div class="meta"><small>MAING · стенды</small><h3>Оформление выставок</h3><p>Ведём соцсети и делаем рассылки по клиентской базе.</p></div></div>
       <a class="pcard rv" href="https://velionagency.ru/" target="_blank" rel="noopener"><div class="shot"><img src="media/cases/v1.jpg" alt="Сайт velionagency.ru" loading="lazy"><span class="go"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0b0b0c" stroke-width="2.4" stroke-linecap="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span></div>
         <div class="meta"><small>Velion · velionagency.ru</small><h3>Агентство ботов и ИИ-агентов</h3><p>Сделали сайт, настроили ботов и закупили рекламу.</p></div></a>
-      <a class="pcard rv" style="--rd:.1s" href="https://egolab.shop/" target="_blank" rel="noopener"><div class="shot"><img src="media/cases/egolab.jpg" alt="Сайт egolab.shop" loading="lazy"><span class="go"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0b0b0c" stroke-width="2.4" stroke-linecap="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span></div>
-        <div class="meta"><small>EgoLab · egolab.shop</small><h3>Магазин спортивного питания</h3><p>Сделали сайт, настроили соцсети и ботов.</p></div></a>
+      <a class="pcard rv" style="--rd:.1s" href="https://egolab.shop/" target="_blank" rel="nofollow noopener"><div class="shot"><img src="media/cases/egolab.jpg" alt="Интернет-магазин спортивного питания" loading="lazy"><span class="go"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0b0b0c" stroke-width="2.4" stroke-linecap="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span></div>
+        <div class="meta"><small><i class="nm" data-n="EgoLab · egolab.shop" aria-hidden="true"></i></small><h3>Магазин спортивного питания</h3><p>Сделали сайт, настроили соцсети и ботов.</p></div></a>
     </div>
     <div class="swipe-hint mob-only">Листайте <i></i><span class="dots" data-for="proj"></span></div>
   </div>
