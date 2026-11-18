@@ -531,7 +531,7 @@ footer{background:var(--ink);color:#a3a3a8;border-top:1px solid var(--line-d);pa
       <h1><span class="row"><span>Бизнес работает.</span></span><span class="row"><span style="transition-delay:.12s">Пока рутина</span></span><span class="row"><span style="transition-delay:.24s">не&nbsp;съест весь день.</span></span></h1>
       <p class="lead fade-in" style="--d:.45s">Соцсети, видео, звонки, рассылки, боты, реклама и&nbsp;сайты — одна команда вместо пяти подрядчиков. Забираем рутину, чтобы вы занимались делом.</p>
       <ul class="checks fade-in" style="--d:.55s">
-        <li><i><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#0b0b0c" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5 10 17 19 7"/></svg></i>Десятки услуг в 12 направлениях</li>
+        <li><i><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#0b0b0c" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5 10 17 19 7"/></svg></i>Десятки услуг в 13 направлениях</li>
         <li><i><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#0b0b0c" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5 10 17 19 7"/></svg></i>Одно окно — один чат для всех задач</li>
       </ul>
       <div class="cta-row fade-in" style="--d:.65s"><a class="btn" href="https://t.me/nohassle_ru" target="_blank" rel="noopener">Обсудить задачу <span class="arr">→</span></a><a class="link" href="#projects">Смотреть проекты <span>→</span></a></div>
@@ -567,7 +567,7 @@ footer{background:var(--ink);color:#a3a3a8;border-top:1px solid var(--line-d);pa
 
 <section class="sec mist" id="services">
   <div class="wrap">
-    <div class="eyebrow rv">12 направлений · десятки услуг</div>
+    <div class="eyebrow rv">13 направлений · десятки услуг</div>
     <h2 class="h2 rv" style="--rd:.08s">Всё, что отнимает<br>у вас время.</h2>
     <div class="rows" id="rows"></div>
     <p class="note rv">Нажмите на направление, чтобы увидеть все услуги. Нужно что-то другое — просто напишите.</p>
@@ -709,16 +709,18 @@ footer{background:var(--ink);color:#a3a3a8;border-top:1px solid var(--line-d);pa
     deck: '<rect x="3" y="4" width="18" height="12" rx="2"/><path d="M12 16v4M8 20h8M7 12l3-3 2 2 4-4"/>',
     text: '<path d="M5 6h14M5 11h14M5 16h9"/>',
     design: '<path d="M12 3a9 9 0 1 0 0 18c1.2 0 1.6-1 1-1.8-.6-.9 0-2.2 1.2-2.2H17a4 4 0 0 0 4-4C21 7 17 3 12 3Z"/><circle cx="8" cy="11" r="1"/><circle cx="11" cy="7.5" r="1"/><circle cx="15.5" cy="8.5" r="1"/>',
+    avatar: '<circle cx="12" cy="8.5" r="3.8"/><path d="M4.5 20a7.5 7.5 0 0 1 15 0"/><path d="M18.5 3.5v3M17 5h3"/>',
     ai: '<path d="M12 3.5c.4 3.9 1.9 6.7 5.8 7.6l2.7.6-2.7.6c-3.9.9-5.4 3.7-5.8 7.6-.4-3.9-1.9-6.7-5.8-7.6l-2.7-.6 2.7-.6c3.9-.9 5.4-3.7 5.8-7.6Z"/>',
   };
   const svg = (k, c = 'currentColor', w = 1.7) => `<svg viewBox="0 0 24 24" fill="none" stroke="${c}" stroke-width="${w}" stroke-linecap="round" stroke-linejoin="round">${IC[k]}</svg>`;
   const SERVICES = [
     ['social', 'Соцсети', ['Контент-план', 'Посты и карусели', 'Сторис и Reels', 'Подписи и хэштеги', 'Оформление профиля', 'Публикация по расписанию', 'Ответы в комментариях']],
     ['video', 'Видео', ['Идеи и сценарии', 'Монтаж из ваших фото и видео', 'Анимация', 'Озвучка голосом', 'Субтитры и музыка', 'ТикТок, Reels, Shorts']],
+    ['avatar', 'Цифровой аватар', ['Создаём цифрового аватара — ваше лицо или новый персонаж', 'Говорит вашим голосом', 'Сценарии роликов с аватаром', 'Монтаж и субтитры', 'Выкладываем ролики в соцсети по расписанию']],
     ['ads', 'Реклама', ['Закуп рекламы в Telegram-каналах', 'Реклама у блогеров', 'Таргет в соцсетях', 'Креативы и баннеры', 'Отчёты по заявкам']],
     ['avito', 'Авито и маркетплейсы', ['Десятки объявлений за день', 'Автозагрузка XML/Excel', 'Продающие тексты', 'Обработка фото', 'Обновление цен', 'Карточки товаров']],
     ['calls', 'Звонки и клиенты', ['Прозвон клиентской базы', 'Холодные звонки по скрипту', 'Обработка заявок', 'Переписка в мессенджерах', 'Напоминания и сбор отзывов']],
-    ['mail', 'Рассылки', ['WhatsApp и Telegram', 'E-mail и SMS', 'Акции и напоминания', 'Сегментация базы', 'Отчёт по откликам']],
+    ['mail', 'Рассылки', ['WhatsApp', 'E-mail', 'Акции и напоминания', 'Сегментация базы', 'Отчёт по откликам']],
     ['bot', 'Боты и автоматизация', ['Чат-бот для заявок', 'Бот записи', 'Автоответы', 'Уведомления о заказах', 'Связка CRM, таблиц и мессенджеров', 'Автоматические отчёты']],
     ['site', 'Сайты', ['Правки текстов и цен', 'Редизайн — красивее и современнее', 'Сайт или лендинг с нуля', 'Формы заявок и онлайн-запись', 'Адаптация под телефоны', 'Аналитика']],
     ['deck', 'Презентации и документы', ['Презентация компании', 'Коммерческие предложения', 'PDF-каталоги и прайсы', 'Шаблоны писем и договоров', 'Таблицы и отчёты']],
